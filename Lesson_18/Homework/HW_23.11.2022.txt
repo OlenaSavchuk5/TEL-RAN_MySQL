@@ -1,0 +1,100 @@
+-- ДЗ:
+
+select * from countries;
+select * from departments;
+select * from employees;
+select * from jobs;
+select * from locations;
+select * from regoins;
+
+-- 1. Вывести название отделов с кол-вом сотрудников больше среднего
+
+select
+  t1.department_name,
+  count(*)
+from departments t1
+inner join employees t2
+on t1.department_id = t2.department_id
+group by t1.department_name
+having count(*) > (
+	select
+       avg(count)
+    from (
+		select
+           count(*) as count
+        from employees 
+        where department_id is not null
+        group by department_id
+    )  t3
+); 
+
+
+select
+   department_name
+from departments
+where department_id in (
+	select 
+      department_id
+    from employees
+    where department_id is not null
+    group by department_id
+    having count(*) > (
+			select
+              avg(ctn)
+            from (
+              select 
+                 count(*) as ctn
+              from employees
+              where department_id is not null
+              group by department_id
+            )  t1
+    )
+);  
+
+select
+	department_name
+from departments
+where department_id in (
+	select
+		department_id
+	from employees
+	group by department_id
+	having count(*) > (
+		select
+			avg(cnt) as avg_cnt
+		from (
+			select
+				department_id,
+				count(*) as cnt
+			from employees
+			group by department_id
+			having department_id is not null
+		) t1
+	)
+);
+
+
+-- 2. Найти департамент с наибольшим кол-вом сотрудников 
+
+
+select
+	department_name
+from departments
+where department_id in (
+	select
+		department_id
+	from employees
+	group by department_id
+	having count(*) = (
+		select
+			max(cnt) as max_cnt
+		from (
+			select
+				department_id,
+				count(*) as cnt
+			from employees
+			group by department_id
+			having department_id is not null
+		) t1
+	)
+);
