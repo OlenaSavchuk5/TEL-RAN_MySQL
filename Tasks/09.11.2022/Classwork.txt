@@ -1,0 +1,4 @@
+select * from hr.jobs;
+select * from hr.employees;
+select * from hr.departments;
+select * from hr.locations;

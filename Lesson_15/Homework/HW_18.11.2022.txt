@@ -1,0 +1,51 @@
+https://www.sql-ex.ru/ тренировочный сайт для решения задач.
+
+-- ДЗ
+
+-- БД University:
+-- 1. найдите компетенции, которых нет ни у одного преподавателя
+
+select
+	t1.title
+from Competencies t1
+left join Teachers2Competencies t2
+on t1.id = t2.competencies_id
+where t2.competencies_id is null;
+
+
+-- 2. выведите название курса и имя старосты
+
+select
+	t1.name,
+    t2.title
+from students t1
+inner join courses t2
+on t1.id = t2.headman_id;
+
+-- 3. выведите имя студента и имена старост, которые есть на курсах, которые он проходит
+
+select
+	t1.name,
+    t3.title,
+    t4.name as headman
+from students t1
+inner join students2courses t2
+on t1.id = t2.student_id
+inner join courses t3
+on t2.course_id = t3.id
+inner join students t4
+on t3.headman_id = t4.id;
+
+
+-- БД HR (задачи на CASE)
+-- 1) Найти департаменты в которых есть работники, зарабатывающие больше 10 000. В результате выборки формируются два поля (department_id и поле со значениями 1 или 0)
+-- 2) Найти департаменты в которых ВСЕ работники зарабатывают больше 10 000. В результате выборки формируются два поля (department_id и поле со значениями 1 или 0)
+
+​
+
+
+
+
+
+
+

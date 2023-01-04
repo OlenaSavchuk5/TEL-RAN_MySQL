@@ -1,0 +1,92 @@
+https://www.sql-ex.ru/
+
+1. Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.
+Вывести: maker, средний размер экрана.
+
+select
+  t2.maker, 
+  avg(screen) as avg_screen
+from laptop t1
+inner join product t2
+on t1.model = t2.model
+group by t2.maker
+
+
+2.
+ Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
+
+select
+   maker,
+   count(*) as cnt
+from product
+where type = 'pc'
+group by maker
+having count(*) >= 3;
+
+
+3.Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.
+
+select
+   t2.maker,
+   max(t1.price) as max_price
+from pc t1
+inner join product t2
+on t1.model = t2.model
+group by t2.maker;
+
+
+4. Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена.
+
+select
+   speed,
+   avg(price) as avg_price
+from pc
+where speed > 600
+group by speed;
+
+
+5. Найдите производителей, которые производили бы как ПК
+со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+Вывести: Maker
+
+select distinct
+  t2.maker
+from pc t1
+inner join product t2
+on t1.model = t2.model
+and t1.speed >= 750
+inner join (
+     select
+         t2.maker
+     from laptop t1
+     inner join product t2
+     on t1.model = t2.model
+     and t1.speed >= 750
+) t3
+on t2.maker = t3.maker;
+
+
+
+6. Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+
+select 
+   model
+from (
+   select model, price from pc
+   union
+   select model, price from laptop
+   union
+   select model, price from printer 
+) t2
+where price = (
+        select
+             max(price) as max_price
+        from (
+            select price from pc
+            union
+            select price from laptop
+            union
+            select price from printer
+    ) t1 
+);

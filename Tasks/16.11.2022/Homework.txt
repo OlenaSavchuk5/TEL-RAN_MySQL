@@ -1,0 +1,23 @@
+6. Вывести имя, фамилию всех женатых мужчин покупателей, которые покупали продукты со 
+стоимостью (list_price) больше 550.
+
+select
+    cus.cust_first_name,
+    cus.cust_last_name
+from oe.customers cus
+inner join oe.orders ord
+on cus.customer_id = ord.customer_id
+inner join oe.order_items orditm
+on ord.order_id = orditm.order_id
+inner join oe.product_information prodinf
+on orditm.product_id = prodinf.product_id
+where cus.marital_status = 'married' and prodinf.list_price > 550;
+
+
+7. Вывести названия(product_name) тех продуктов, у которых стоимость больше, чем у продукта 
+'LaserPro 600/6/BW’(self join).
+
+select
+    t1.product_name
+from oe.product_information t1, oe.product_information t2
+where t1.list_price > t2.list_price and (t2.product_name = 'LaserPro 600/6/BW');

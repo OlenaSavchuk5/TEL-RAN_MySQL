@@ -1,0 +1,71 @@
+// Null
+
+ SELECT
+  first_name,
+  last_name,
+  commission_pct
+ FROM employees
+ WHERE commission_pct is null;
+
+
+ SELECT
+  first_name,
+  last_name,
+  commission_pct
+ FROM employees
+ WHERE commission_pct is not null;
+
+
+ 
+ SELECT DISTINCT
+   job_id
+ FROM employees;
+  
+
+ SELECT DISTINCT
+  department_id
+ FROM employees;
+
+
+
+ Найти job_id у которых нет COMMISSION_PCT или зп меньше 3000. 
+ SELECT DISTINCT 
+  job_id,
+  commission_pct,
+  salary
+ FROM employees
+ WHERE  commission_pct is null or salary < 3000;
+
+
+
+
+CREATE TABLE Users (
+	id integer,
+  	first_name varchar(128),
+  	last_name varchar(128),
+  	username varchar(128),
+  	age integer
+);
+
+
+CREATE TABLE Users (
+	id integer NOT NULL auto_increment,
+  	first_name varchar(128),
+  	last_name varchar(128),
+  	username varchar(128),
+  	age integer
+);
+
+
+
+
+
+
+CREATE TABLE Users (
+	id integer PRIMARY KEY,
+  	first_name varchar(128),
+  	last_name varchar(128),
+  	username varchar(128),
+  	age integer CHECK(age >= 18),
+  	gender char(1) CHECK(gender in ('M', 'F'))
+);

@@ -1,0 +1,36 @@
+-- ДЗ:
+-- 1. Выведите названия департаментов, в которых менеджеры зарабатывают больше 10000
+-- 2. Вывести имя и фамилию сотрудника и имя и фамилию его менеджера * self join?
+-- 3. Вывести job_id тех сотрудников, которые зарабатывают больше своего менеджера *
+
+
+select
+    t1.department_name,
+    t2.salary
+from departments t1
+left join employees t2
+on t1.manager_id = t2.employee_id
+where t2.salary > 10000;
+​
+​
+-- 2. Вывести имя и фамилию сотрудника и имя и фамилию его менеджера *
+​
+select * from employees;
+​
+select
+    t1.first_name,
+    t1.last_name,
+    t2.first_name as manager_firstname,
+    t2.last_name as manager_lastname
+from employees t1
+inner join employees t2
+on t1.manager_id = t2.employee_id;
+​
+-- 3. Вывести job_id тех сотрудников, которые зарабатывают больше своего менеджера *
+​
+select distinct
+	t1.job_id
+from employees t1
+inner join employees t2
+on t1.manager_id = t2.employee_id
+where t1.salary > t2.salary;

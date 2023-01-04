@@ -1,0 +1,65 @@
+-- ДЗ в песочнице 
+
+-- 1. Средний возраст покупателей из UK.
+
+select
+  country,
+  avg(age) as avg_age
+from customers
+group by country
+having country = 'UK';
+
+
+-- 2. Средний возраст покупателей из UK и USA (в разбивке по странам).
+
+select
+  country,
+  avg(age) as avg_age
+from customers
+where country in ('UK', 'USA')
+group by country;
+
+
+-- 3. Найти страны, в которых средний возраст покупателей больше или равен 25.
+
+select
+  country,
+  avg(age) as avg_age
+from customers
+group by country
+having avg_age >= 25;
+
+
+-- 4. Найти тех покупателей, у которых средний amount больше или равен 400. 
+      Вывести имя, фамилию покупателя и средний amount.
+
+select
+  t1.first_name,
+  t1.last_name,
+  t2.avg_amount
+from customers t1
+inner join (
+	 select
+        customer_id,
+  	    avg(amount) as avg_amount
+     from orders
+    group by customer_id
+) t2
+on t1.customer_id = t2.customer_id
+where avg_amount >= 400;
+
+
+select
+  t1.first_name,
+  t1.last_name,
+  t2.avg_amount
+from customers t1
+inner join (
+	 select
+        customer_id,
+  	    avg(amount) as avg_amount
+     from orders
+    group by customer_id
+    having avg_amount >= 400
+) t2
+on t1.customer_id = t2.customer_id;

@@ -1,0 +1,178 @@
+
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Anna'
+        , 'Khachaturyan'
+        , 'Senior Teacher'
+        , 22
+        , 0
+        , 'annakhach5'
+        );
+        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Tom'
+        , 'Austin'
+        , 'Junior Blogger'
+        , 25
+        , 1
+        , 'tom12345'
+        );
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Bill'
+        , 'Lorentz'
+        , 'Junior Web Developer'
+        , 40
+        , 1
+        , 'billt1'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Lily'
+        , 'May'
+        , 'Junior Backend Developer'
+        , 25
+        , 1
+        , 'lil12'
+        );
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Nona'
+        , 'Lucky'
+        , 'Junior Teacher'
+        , 20
+        , 0
+        , 'LuckyNona'
+        ); 
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ( 'Nancy'
+        , 'Greenberg'
+        , 'Middle UI Designer'
+        , 32
+        , 1
+        , 'nancy1'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Daniel'
+        , 'Faviet'
+        , 'Senior UX Designer'
+        , 43
+        , 1
+        , 'favietD'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Ally'
+        , 'Austin'
+        , 'Junior UI Designer'
+        , 28
+        , 0
+        , 'ally1'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Lily'
+        , 'Chen'
+        , 'Senior Teacher'
+        , 25
+        , 1
+        , 'lilychen'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Anna'
+        , 'Austin'
+        , 'Middle Teacher'
+        , 34
+        , 1
+        , 'anna28'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Alexander'
+        , 'Lorentz'
+        , 'Junior Backend Developer'
+        , 25
+        , 0
+        , 'alex12345'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Ashley'
+        , 'Lorentz'
+        , 'Junior UX Designer'
+        , 18
+        , 0
+        , 'lorentz99'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Tom'
+        , 'Lucky'
+        , 'Middle Blogger'
+        , 34
+        , 1
+        , 'lucky78'
+        );        
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Ashley'
+        , 'Weiss'
+        , 'Junior Blogger'
+        , 18
+        , 0
+        , 'weiss11'
+        );
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Tom'
+        , 'Weiss'
+        , 'Junior UI Designer'
+        , 18
+        , 0
+        , 'tom222'
+        );   
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Anna'
+        , 'Bloom'
+        , 'Middle UX Designer'
+        , 20
+        , 0
+        , 'bloom5'
+        );   
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Tom'
+        , 'Berg'
+        , 'Middle Teacher'
+        , 34
+        , 0
+        , 'tommy1'
+        );   
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Ashley'
+        , 'Berg'
+        , 'Senior Teacher'
+        , 37
+        , 0
+        , 'ash89'
+        );
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Lily'
+        , 'Weiss'
+        , 'Middle Blogger'
+        , 45
+        , 0
+        , 'lilyW1'
+        );   
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Anna'
+        , 'Lorentz'
+        , 'Senior UX Designer'
+        , 31
+        , 0
+        , 'annlo1'
+        );   
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Ashley'
+        , 'Weiss'
+        , 'Middle UX Designer'
+        , 18
+        , 0
+        , 'weiss1'
+        );       
+INSERT INTO Staff(firstname, lastname, position, age, has_child, username) VALUES 
+        ('Anna'
+        , 'Keren'
+        , 'Junior UX Designer'
+        , 34
+        , 0
+        , 'annaK1'
+        );       

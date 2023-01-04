@@ -1,0 +1,136 @@
+use group_35_36;
+
+/*1. Создать таблицу employees; 
+  employee_id целое число первичный ключ автоинкремент старт = 100, 
+  fname строка не null, 
+  last_name строка не null, 
+  email строка не null, 
+  phone строка не null*/
+  
+  create table employees (
+		employee_id integer primary key auto_increment,
+        fname varchar(128) not null,
+        last_name varchar(128) not null,
+        email varchar(128),
+        phone varchar(128) not null
+  ) auto_increment = 100;
+  
+  SELECT * FROM employees;
+   show tables; 
+-- 2. Ой, забыли про зарплату)) Добавить поле salary numeric(9, 2), 
+
+alter table employees
+add price numeric(9, 2);
+
+alter table employees
+drop column price;
+  
+alter table employees
+add salary numeric(9, 2);  
+
+
+-- 3. Ойййй, нет, зарплата должна быть целым числом. Изменить тип salary на integer.
+
+alter table employees
+modify column salary integer;
+
+
+-- 4. Переименовать поле name на first_name
+
+alter table employees
+change fname first_name varchar(128);
+
+
+-- 5. Удалить поле phone 
+
+alter table employees
+drop column phone;
+
+-- 6. Добавить поле department строка не null
+
+alter table employees
+add department varchar(128) not null;
+
+
+-- 7. Заполнить таблицу (employees.txt) (+)
+
+-- 8. Найти всех ИТ работников с зарплатой выше 12000 
+
+select 
+  first_name,
+  last_name,
+  salary
+from employees
+where salary > 12000;  
+
+-- 9. Повысить зарплату работников отдела Human Resources в 5 раз 
+
+update employees
+set salary = salary * 5
+where department = 'Human Resources';
+
+
+set sql_safe_updates = 0;
+
+select * from employees;
+
+-- 10.  Найти работников отдела Marketing с зарплатой ниже 2850.
+
+select 
+  first_name,
+  last_name,
+  salary
+from employees
+where department = 'Marketing' and salary < 2850;  
+
+-- 11.   У руководителя родились близнецы Лаура и Адам, в честь праздника он решил повысить 
+-- зарплату работников с именами Лаура и Адам в 10 раз.
+
+update employees
+set salary = salary * 10
+where first_name = 'Laura' and first_name = 'Adam';
+-- where first_name in ('Laura', 'Adam');
+
+
+-- 12.   Diana Lorentz вышла замуж и поменяла фамилию на King. Поменяйте у Diana Lorentz фамилию на King.
+
+
+update employees
+set last_name = 'King'
+where first_name = 'Diana' and last_name = 'Lorentz';  
+
+
+-- 13.  Всех работников отдела sales уволили. Удалите работников sales из таблицы.
+
+delete from employees
+where department = 'Sales';
+
+
+-- 14.  John Russell перевели в отдел Marketing и повысили зарплату на 5000. Измените данные для 
+-- работника John Russell. 
+
+update employees
+set department = 'Marketing', salary = salary + 5000
+where first_name = 'John' and last_name = 'Russell';
+
+
+-- 15.  После праздника руководитель протрезвел и уменьшил зарплаты работников с именами 
+-- Лаура и Адам в 10 раз. 
+
+update employees
+set salary = salary / 10
+where first_name in ('Laura', 'Adam');
+
+
+-- 16.  Laura Bissot поменяла свой мейл на BISSOTLAURA. Измените данные для работника Laura Bissot. 
+
+update employees
+set email = 'BISSOTLAURA'
+where first_name = 'Laura'and last_name = 'Bissot';  
+
+-- 17.  Diana King развелась и поменяла фамилию обратно на Lorentz. И в честь развода руководитель 
+-- повысил ее зарплату на 2000.  Измените данные для работника Diana King.
+
+update employees
+set last_name = 'Lorentz', salary = salary + 2000
+where first_name = 'Diana' and last_name = 'King';

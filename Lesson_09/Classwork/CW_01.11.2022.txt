@@ -1,0 +1,51 @@
+https://www.programiz.com/sql/online-compiler/
+
+
+select customer_id, first_name from customers
+union
+select order_id, item from orders;
+
+
+select
+  first_name as column_1
+  last_name as column_2
+from customers;            // alias переименовать
+
+
+
+create table output as
+select
+  first_name as column_1
+  last_name as column_2
+from customers;            // сделать выборку в новой таблице 
+
+
+
+select 
+  *
+from customers t1
+inner join orders t2      // left join, right join
+on t1.customer_id = t2.customer_id;
+
+
+
+select 
+  t1.first_name,
+  t1.last_name,
+  t2.item
+from customers t1
+left join orders t2
+on t1.customer_id = t2.customer_id;
+
+
+
+select 
+  t1.first_name,
+  t1.last_name,
+  t2.item,
+  t3.status
+from customers t1
+inner join orders t2
+on t1.customer_id = t2.customer_id
+inner join shippings t3
+on t2.customer_id = t3.customer;

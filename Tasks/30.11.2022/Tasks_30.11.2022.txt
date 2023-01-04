@@ -1,0 +1,73 @@
+select * from oe.customers;
+select * from oe.orders;
+select * from oe.order_items;
+select * from oe.product_information;
+
+-- 1. Вывести сумму заказов для всех покупателей.
+
+select
+    t1.CUST_FIRST_NAME,
+    t1.CUST_LAST_NAME,
+    t2.sum
+from oe.customers t1
+inner join (
+    select 
+        sum(ORDER_TOTAL) sum,
+        CUSTOMER_ID
+    from oe.orders
+    group by CUSTOMER_ID
+    ) t2
+on t1.CUSTOMER_ID = t2.CUSTOMER_ID;
+
+-- 2. Вывести имя и фамилию тех покупателей, у которых лимит кредита больше среднего.
+
+select
+  cust_first_name,
+  cust_last_name
+from oe.customers 
+where credit_limit > (
+    select
+        avg(CREDIT_LIMIT)
+    from oe.customers
+);
+
+-- 3. Вывести максимальный лимит кредита покупателей женского пола и мужского по отдельности. Вывести имя и фамилию этих покупателей.
+
+select 
+        cust.CUST_FIRST_NAME,
+        cust.CUST_LAST_NAME,
+        cust.CREDIT_LIMIT,
+        cust.GENDER
+    from oe.customers cust
+    inner join (
+    select 
+        GENDER,
+        max(CREDIT_LIMIT) as max_CREDIT_LIMIT
+    from oe.customers
+    group by GENDER
+    ) gen
+    on cust.GENDER = gen.GENDER
+    and cust.CREDIT_LIMIT = gen.max_CREDIT_LIMIT;
+
+
+-- 4. Вывести количество покупателей мужского пола.
+
+select 
+    count(*) as CUSTOMER_cnt
+from oe.customers
+where GENDER like 'M';
+
+
+-- 5. Найти товары с минимальным количеством, вывести имя товара и количество.
+
+select
+  prod.product_name,
+  ord.quantity
+from oe.order_items ord
+inner join oe.product_information prod
+on ord.product_id = prod.product_id
+and ord.quantity = (
+        select
+          min(quantity)
+        from oe.order_items
+);

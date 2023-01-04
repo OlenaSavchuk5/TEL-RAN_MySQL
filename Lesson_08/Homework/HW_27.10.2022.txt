@@ -1,0 +1,12 @@
+-- ДЗ:
+-- 11) Поменяйте у Олега Петрова фамилию на Сидоров
+-- 12) Для всех учеников, у которых оценка не больше 31 увеличить ее на 10
+
+
+update students
+set last_name = 'Сидоров'
+where last_name = 'Петров';
+
+update students
+set avg_mark = avg_mark + 10
+where avg_mark <= 31;

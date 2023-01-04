@@ -1,0 +1,80 @@
+1. Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+
+select 
+   hd
+from pc
+group by hd
+having count(*) >= 2;
+
+2. Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только 
+один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
+
+select distinct
+  t1.model, 
+  t2.model, 
+  t1.speed, 
+  t1.ram
+from pc t1, pc t2
+where t1.speed = t2.speed AND t1.ram = t2.ram AND t1.model > t2.model;
+
+
+select distinct
+	t1.model,
+	t2.model,
+	t2.speed,
+	t2.ram
+from pc t1
+inner join pc t2
+on t1.ram = t2.ram
+where t1.speed = t2.speed
+and t1.model > t2.model
+
+3. Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
+Вывести: type, model, speed
+
+
+select distinct
+  'Laptop' as type,
+   model,
+   speed
+from laptop 
+where speed < (select min(speed) from pc);
+
+
+4. Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
+
+select distinct  
+  t2.maker, 
+  t1.price 
+from printer t1 
+inner join product t2 
+on t1.model = t2.model
+where t1.color = 'y'
+and t1.price = (
+    select
+       min(price)
+    from printer
+    where color = 'y'
+);
+
+5. Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.
+Вывести: maker, средний размер экрана.
+
+select
+  t2.maker, 
+  avg(screen) as avg_screen
+from laptop t1
+left join product t2
+on t1.model = t2.model
+group by t2.maker;
+
+select
+	t2.maker,
+	avg(t1.screen) as avg_screen
+from laptop t1
+inner join product t2
+on t1.model = t2.model
+group by t2.maker
+
+
+ hw 20-24
